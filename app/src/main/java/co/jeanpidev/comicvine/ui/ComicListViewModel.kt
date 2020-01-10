@@ -24,7 +24,7 @@ class ComicListViewModel : BaseViewModel() {
     private val issuesList: MutableLiveData<IssueListResponse> = MutableLiveData()
     private var onClickListTrigger = SingleLiveEvent<Unit>()
     private var onClickGridTrigger = SingleLiveEvent<Unit>()
-    private val limit = 20L
+    private val limit = 100L
     private val sort = "date_added:desc"
     private val unableResolveHost = "Unable to resolve host \"comicvine.gamespot.com\""
 
