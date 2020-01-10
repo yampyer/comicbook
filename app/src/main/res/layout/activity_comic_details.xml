@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="co.jeanpidev.comicvine.ui.ComicDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/full_height"
+            android:layout_marginBottom="@dimen/comic_details_padding_bottom"
+            android:fillViewport="true"
+            android:paddingBottom="@dimen/padding_10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/comic_details_padding_bottom">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivComicCover"
+                    android:layout_width="@dimen/full_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.5" />
+
+                <LinearLayout
+                    android:id="@+id/llCharacters"
+                    android:layout_width="@dimen/full_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toStartOf="@+id/ivComicCover"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/characters"
+                        android:textSize="@dimen/title_text_size"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/separator_line_characters"
+                    android:layout_width="@dimen/full_width"
+                    android:layout_height="@dimen/separator_line_height"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    android:background="@android:color/black"
+                    app:layout_constraintEnd_toStartOf="@+id/ivComicCover"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llCharacters" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCharacters"
+                    android:layout_width="@dimen/full_width"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_recycler_view_comics"
+                    app:layout_constraintEnd_toStartOf="@+id/ivComicCover"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/separator_line_characters" />
+
+                <LinearLayout
+                    android:id="@+id/llTeams"
+                    android:layout_width="@dimen/full_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toStartOf="@+id/ivComicCover"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rvCharacters">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/teams"
+                        android:textSize="@dimen/title_text_size"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/separator_line_teams"
+                    android:layout_width="@dimen/full_width"
+                    android:layout_height="@dimen/separator_line_height"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    android:background="@android:color/black"
+                    app:layout_constraintEnd_toStartOf="@+id/ivComicCover"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llTeams" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTeams"
+                    android:layout_width="@dimen/full_width"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_recycler_view_comics"
+                    app:layout_constraintEnd_toStartOf="@+id/ivComicCover"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/separator_line_teams" />
+
+                <LinearLayout
+                    android:id="@+id/llLocations"
+                    android:layout_width="@dimen/full_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toStartOf="@+id/ivComicCover"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rvTeams">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/locations"
+                        android:textSize="@dimen/title_text_size"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/separator_line_locations"
+                    android:layout_width="@dimen/full_width"
+                    android:layout_height="@dimen/separator_line_height"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    android:background="@android:color/black"
+                    app:layout_constraintEnd_toStartOf="@+id/ivComicCover"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llLocations" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvLocations"
+                    android:layout_width="@dimen/full_width"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_recycler_view_comics"
+                    app:layout_constraintEnd_toStartOf="@+id/ivComicCover"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/separator_line_locations" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/elevation_progress_bar"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:mutableVisibility="@{viewModel.getLoadingVisibility()}" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/progressColor"
+            android:clickable="true"
+            android:elevation="@dimen/elevation_progress_background"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:mutableVisibility="@{viewModel.getLoadingVisibility()}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

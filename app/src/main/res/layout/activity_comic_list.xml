@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="co.jeanpidev.comicvine.ui.ComicListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/llViewMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:layout_marginEnd="@dimen/margin_8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/latest_issues"
+                android:textStyle="bold"
+                android:textSize="@dimen/title_text_size" />
+
+            <View
+                android:layout_width="@dimen/full_width"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnListMode"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_list"
+                android:background="@android:color/transparent"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textAllCaps="false"
+                android:text="@string/list"
+                android:onClick="@{() -> viewModel.onClickListEvent()}" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnGridMode"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_view_grid"
+                android:background="@android:color/transparent"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textAllCaps="false"
+                android:layout_gravity="end"
+                android:text="@string/grid"
+                android:onClick="@{() -> viewModel.onClickGridEvent()}" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/separator_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/separator_line_height"
+            android:background="@android:color/black"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:layout_marginEnd="@dimen/margin_8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llViewMode" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/elevation_progress_bar"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:mutableVisibility="@{viewModel.getLoadingVisibility()}" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/progressColor"
+            android:clickable="true"
+            android:elevation="@dimen/elevation_progress_background"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:mutableVisibility="@{viewModel.getLoadingVisibility()}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:padding="@dimen/padding_recycler_view_comics"
+            android:id="@+id/rvComics"
+            android:layout_width="@dimen/full_width"
+            android:layout_height="@dimen/full_height"
+            app:adapter="@{viewModel.getComicListAdapter()}"
+            app:layout_constraintTop_toBottomOf="@+id/separator_line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
